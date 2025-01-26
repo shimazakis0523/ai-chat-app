@@ -1,10 +1,11 @@
 import { MainNav } from "./main-nav";
 import UserButton from "./user-button";
+import { auth } from "@/auth";
 
-export default function Header() {
+export function Header({ className }: { className?: string }) {
   return (
-    <header className="sticky flex justify-center border-b">
-      <div className="flex items-center justify-between w-full h-16 max-w-3xl px-4 mx-auto sm:px-6">
+    <header className={`h-14 bg-black border-b border-neutral-800 ${className || ''}`}>
+      <div className="max-w-5xl mx-auto h-full flex items-center justify-between px-4">
         <MainNav />
         <UserButton />
       </div>
