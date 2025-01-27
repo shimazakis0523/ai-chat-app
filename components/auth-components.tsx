@@ -1,40 +1,30 @@
+"use client";
+
 import React from "react";
 import { Button } from "./ui/button";
-import { signIn, signOut } from "@/auth";
+import { handleSignIn, handleSignOut } from "@/app/actions";
 
 export function SignIn({
   provider,
   ...props
 }: { provider?: string } & React.ComponentPropsWithRef<typeof Button>) {
   return (
-    <form
-      action={async () => {
-        "use server";
-        await signIn(provider);
-      }}
-    >
+    <form action={() => handleSignIn(provider)}>
       <Button 
-        className="bg-cyan-500 hover:bg-cyan-400 text-black font-semibold shadow-[0_0_15px_rgba(6,182,212,0.5)] transition-all hover:shadow-[0_0_25px_rgba(6,182,212,0.65)]"
+        className="w-32 bg-purple-600 hover:bg-purple-500 text-white font-semibold shadow-[0_0_15px_rgba(147,51,234,0.5)] hover:shadow-[0_0_30px_rgba(147,51,234,0.8)] transition-all"
         {...props}
       >
-        Sign In
+        Get Started
       </Button>
     </form>
   );
 }
 
 export function SignOut({
-  provider,
   ...props
-}: { provider?: string } & React.ComponentPropsWithRef<typeof Button>) {
+}: React.ComponentPropsWithRef<typeof Button>) {
   return (
-    <form
-      action={async () => {
-        "use server";
-        await signOut();
-      }}
-      className="w-full"
-    >
+    <form action={handleSignOut} className="w-full">
       <Button 
         variant="ghost" 
         className="text-cyan-400 hover:text-cyan-300 hover:bg-cyan-950/50 transition-all"

@@ -1,5 +1,7 @@
+"use client";
+
 import { Button } from "./ui/button";
-import { auth } from "@/auth";
+import { useSession } from "next-auth/react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -10,8 +12,9 @@ import {
 import { SignIn, SignOut } from "./auth-components";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 
-export default async function UserButton() {
-  const session = await auth();
+export default function UserButton() {
+  const { data: session } = useSession();
+  
   if (!session?.user) return <SignIn />;
 
   return (
@@ -29,7 +32,7 @@ export default async function UserButton() {
                   alt={session.user.name ?? ""}
                 />
               )}
-              <AvatarFallback>{session.user.email}</AvatarFallback>
+              <AvatarFallback>{session.user.email?.[0]}</AvatarFallback>
             </Avatar>
           </Button>
         </DropdownMenuTrigger>

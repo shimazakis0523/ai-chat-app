@@ -49,7 +49,7 @@ export default async function Home() {
 
         {/* ボタンセクション */}
         <div className="text-center w-full">
-          <div className="mb-8">
+          <div className="mb-8 mx-auto max-w-2xl">
             {session ? (
               <Link 
                 href="/chat"
@@ -58,9 +58,11 @@ export default async function Home() {
                 Start Chat with AI
               </Link>
             ) : (
-              <SignIn className="w-full py-10 text-3xl rounded-full bg-purple-600 hover:bg-purple-500 text-white font-semibold shadow-[0_0_15px_rgba(147,51,234,0.5)] hover:shadow-[0_0_30px_rgba(147,51,234,0.8)] transition-all duration-300 transform hover:scale-105">
-                Get Started
-              </SignIn>
+              <div className="w-1/2 mx-auto">
+                <SignIn className="w-full py-10 text-3xl rounded-full bg-purple-600 hover:bg-purple-500 text-white font-semibold shadow-[0_0_15px_rgba(147,51,234,0.5)] hover:shadow-[0_0_30px_rgba(147,51,234,0.8)] transition-all duration-300 transform hover:scale-105">
+                  Get Started
+                </SignIn>
+              </div>
             )}
           </div>
           {!session && (
